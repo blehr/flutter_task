@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task/src/pages/archive_page.dart';
 import 'package:flutter_task/src/pages/edit_todo_page.dart';
 import 'blocs/app_state_provider.dart';
 import 'pages/home_page.dart';
@@ -13,7 +12,6 @@ class App extends StatelessWidget {
         routes: {
           '/': (context) => MyHomePage(),
           '/edit': (context) => EditTodoPage(),
-          '/archive': (context) => ArchivePage(),
         },
         title: 'Flutter Demo',
         theme: ThemeData(
