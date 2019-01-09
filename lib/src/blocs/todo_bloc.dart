@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter_task/src/data/todo_queries.dart';
 import 'package:flutter_task/src/models/todo.dart';
-import 'package:flutter_task/src/utils/notifications.dart';
 import 'package:rxdart/rxdart.dart';
 
 class TodoBloc {
@@ -46,11 +45,6 @@ class TodoBloc {
       ..dueDate = dueDate);
 
     var res = await insertTodo(newTodo);
-    Todo withId = newTodo.rebuild((b) => b..todoId = res);
-
-    if (withId.dueDate != null) {
-      scheduleNotification(withId);
-    }
 
     clearAddTodo();
     return res;
@@ -104,10 +98,6 @@ class TodoBloc {
     if (todo != newTodo) {
       print(newTodo);
       await todoQueries.updateTodo(newTodo);
-      if (todo.dueDate != newTodo.dueDate) {
-        await cancelNotification(todo);
-        await scheduleNotification(newTodo);
-      }
     }
     getIncompleteTodos();
     getCompletedTodos();
@@ -115,7 +105,6 @@ class TodoBloc {
   }
 
   deleteTodo(Todo todo) async {
-    await cancelNotification(todo);
     await todoQueries.deleteTodo(todo);
     getIncompleteTodos();
   }
