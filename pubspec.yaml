@@ -17,7 +17,6 @@ dependencies:
     sdk: flutter
   rxdart: ^0.20.0
   built_value: ^6.2.0
-  built_collection: ^4.1.0
   sqflite: any
   path_provider: ^0.4.1
   intl: ^0.15.7
